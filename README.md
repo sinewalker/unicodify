@@ -10,4 +10,5 @@ I intend to generalise this and add Unicode MATHEMATICS, SCRIPT, DOUBLESTROKE an
 
 The [original code](http://www.revfad.com/flip.html) is copyright
 David Faden dfaden@gmail.com
-Creative Commons Attribution-Share Alike 3.0 Unported License.
+
+[Creative Commons Attribution-Share Alike 3.0 Unported License](https://creativecommons.org/licenses/by-sa/3.0/).
