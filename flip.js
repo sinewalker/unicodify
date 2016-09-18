@@ -2,13 +2,10 @@ function flip() {
     var flipType=document.f.flipType.value;
     var originalString=document.f.original.value;
     var result="";
-    switch(flipType) {
-    case "flip":
+    if (flipType == "flip") {
         result = flipString(originalString);
-        break;
-    case "weird":
+    } else {
         result = transformString(originalString, flipType);
-        break;
     }
     document.f.flipped.value = result;
 }
@@ -35,7 +32,12 @@ function transformString(aString, txType) {
         txTable=weirdTable;
         aString=aString.toLocaleLowerCase();
         break;
-
+    case "script":
+        txTable=scriptTable;
+        break;
+    case "fraktur":
+        txTable=frakturTable;
+        break;
     }
 
     for (var i = last; i >= 0; --i) {
@@ -44,7 +46,7 @@ function transformString(aString, txType) {
         result[i] = r ? r : c;
     }
     return result.join('');
-}
+};
 
 var flipTable = {
     a : '\u0250',
@@ -83,7 +85,7 @@ var flipTable = {
 
 for (i in flipTable) {
     flipTable[flipTable[i]] = i;
-}
+};
 
 var weirdTable = {
     a : '\u03B1',
@@ -116,4 +118,72 @@ var weirdTable = {
 
 for (i in weirdTable) {
     weirdTable[weirdTable[i]] = i;
+};
+
+//Astral plane -- extended escapes \u{aabbcc} is for ECMAScript 6 only...
+// also the browser needs a font with the astral glyphs.
+var scriptTable = {
+    A : '𝓐',    a : '𝓪',
+    B : '𝓑',    b : '𝓫',
+    C : '𝓒',    c : '𝓬',
+    D : '𝓓',    d : '𝓭',
+    E : '𝓔',    e : '𝓮',
+    F : '𝓕',    f : '𝓯',
+    G : '𝓖',    g : '𝓰',
+    H : '𝓗',    h : '𝓱',
+    I : '𝓘',    i : '𝓲',
+    J : '𝓙',    j : '𝓳',
+    K : '𝓚',    k : '𝓴',
+    L : '𝓛',    l : '𝓵',
+    M : '𝓜',    m : '𝓶',
+    N : '𝓝',    n : '𝓷',
+    O : '𝓞',    o : '𝓸',
+    P : '𝓟',    p : '𝓹',
+    Q : '𝓠',    q : '𝓺',
+    R : '𝓡',    r : '𝓻',
+    S : '𝓢',    s : '𝓼',
+    T : '𝓣',    t : '𝓽',
+    U : '𝓤',    u : '𝓾',
+    V : '𝓥',    v : '𝓿',
+    W : '𝓦',    w : '𝔀',
+    X : '𝓧',    x : '𝔁',
+    Y : '𝓨',    y : '𝔂',
+    Z : '𝓩',    z : '𝔃'
+};
+
+for (i in scriptTable) {
+    scriptTable[scriptTable[i]] = i;
+}
+
+var frakturTable = {
+    A : '𝕬',    a : '𝔞',
+    B : '𝕭',    b : '𝔟',
+    C : '𝕮',    c : '𝔠',
+    D : '𝕯',    d : '𝔡',
+    E : '𝕰',    e : '𝔢',
+    F : '𝕱',    f : '𝔣',
+    G : '𝕲',    g : '𝔤',
+    H : '𝕳',    h : '𝔥',
+    I : '𝕴',    i : '𝔦',
+    J : '𝕵',    j : '𝔧',
+    K : '𝕶',    k : '𝔨',
+    L : '𝕷',    l : '𝔩',
+    M : '𝕸',    m : '𝔪',
+    N : '𝕹',    n : '𝔫',
+    O : '𝕺',    o : '𝔬',
+    P : '𝕻',    p : '𝔭',
+    Q : '𝕼',    q : '𝔮',
+    R : '𝕽',    r : '𝔯',
+    S : '𝕾',    s : '𝔰',
+    T : '𝕿',    t : '𝔱',
+    U : '𝖀',    u : '𝔲',
+    V : '𝖁',    v : '𝔳',
+    W : '𝖂',    w : '𝔴',
+    X : '𝖃',    x : '𝔵',
+    Y : '𝖄',    y : '𝔶',
+    Z : '𝖅',    z : '𝔷'
+};
+
+for (i in frakturTable) {
+    frakturTable[frakturTable[i]] = i;
 }
